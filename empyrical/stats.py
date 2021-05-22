@@ -233,9 +233,8 @@ def max_drawdown(returns):
     if type(returns) == pd.Series:
         returns = returns.values
 
-    cumulative = np.insert(cum_returns(returns, starting_value=100), 0, 100)
+    cumulative = np.insert(cum_returns(returns, starting_value=100), 0, 1)
     max_return = np.fmax.accumulate(cumulative)
-
     return nanmin((cumulative - max_return) / max_return)
 
 
